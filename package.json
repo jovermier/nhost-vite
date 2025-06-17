@@ -21,7 +21,6 @@
     "@nhost/react-apollo": "18.0.0",
     "@tailwindcss/vite": "4.1.10",
     "clsx": "2.1.1",
-    "graphql": "16.11.0",
     "react": "19.1.0",
     "react-dom": "19.1.0"
   },
