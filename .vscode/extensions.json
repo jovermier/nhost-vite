@@ -1,0 +1,15 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "GraphQL.vscode-graphql-syntax",
+    "herrmannplatz.npm-dependency-links",
+    "bradlc.vscode-tailwindcss",
+    "csstools.postcss",
+    "mikestead.dotenv",
+    "tamasfe.even-better-toml",
+    "donjayamanne.githistory",
+    "herrmannplatz.npm-dependency-links",
+    "walnuts1018.oklch-vscode"
+  ]
+}

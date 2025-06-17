@@ -1,0 +1,46 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Vite: Start Dev Server",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "npm run dev",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "Vite: Debug in Browser",
+      "type": "msedge",
+      "request": "launch",
+      "url": "http://localhost:5173",
+      "webRoot": "${workspaceFolder}/src"
+      // "sourceMaps": true
+      // "internalConsoleOptions": "neverOpen"
+    },
+    {
+      "name": "Vite: Full Stack Debug",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "npm run dev",
+      "cwd": "${workspaceFolder}",
+      "sourceMaps": true,
+      "serverReadyAction": {
+        "pattern": "Local:.*http://localhost:([0-9]+)",
+        "uriFormat": "http://localhost:%s",
+        "action": "debugWithEdge",
+        "webRoot": "${workspaceFolder}/src"
+      }
+    },
+    {
+      "name": "Vite: Preview Build",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "npm run preview",
+      "cwd": "${workspaceFolder}",
+      "preLaunchTask": "npm: build"
+    }
+  ]
+}
