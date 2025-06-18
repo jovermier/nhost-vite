@@ -1,5 +1,15 @@
 # Nhost Dev Container Example with React
 
+### GitHub Codespaces
+
+This project is ready to use with GitHub Codespaces!
+
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new)
+
+In addition to Codespaces, you can also run this project locally or in any compatible development environment using Dev Containers.
+
+## Tech Stack & Features
+
 Todo app to show how to use:
 
 - [Nhost](https://nhost.io/)
