@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview --host localhost --port 3000",
     "nhost:up": "nhost up",
-    "nhost:up:external": "./nhost-docker.sh nhost --local-subdomain ${npm_config_subdomain:-192-168-1-103-proj-a} up",
+    "nhost:up:external": "nhost --local-subdomain ${npm_config_subdomain:-172-17-0-3-proj-a} up",
     "nhost:down": "nhost down",
     "nhost:logs": "nhost logs",
     "setup": "cp .env.example .env && pnpm install",
