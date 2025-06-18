@@ -40,21 +40,27 @@ The easiest way to get started is using a dev container that automatically sets 
    - Starts Nhost services in the background
    - Configures port forwarding for all services
 
-3. **Start the React Application**:
+3. **Start Nhost Services**:
+
+   ```sh
+   nhost up
+   ```
+
+4. **Start the React Application**:
    ```sh
    pnpm dev
    ```
 
 That's it! The dev container automatically handles:
 
-- Installing all dependencies
-- Setting up environment variables
-- Starting Nhost services in the background
+- Installing all dependencies with pnpm
+- Setting up environment variables from `.env.example`
+- Installing the Nhost CLI
 - Configuring proper port forwarding and routing
 
 ## Available Services
 
-When the dev container is running, the following services will be automatically available:
+When running the development environment, the following services will be available:
 
 - **React App**: http://localhost:3000
 - **Nhost Backend**: http://localhost:1337
@@ -63,7 +69,7 @@ When the dev container is running, the following services will be automatically 
 - **Grafana (Monitoring)**: http://localhost:9000
 - **PostgreSQL Database**: localhost:5432
 
-All services are properly configured and routed through the dev container's network.
+Make sure to start Nhost services with `nhost up` if they're not already running.
 
 ## Using Nhost Subdomain for External Access
 
@@ -82,7 +88,7 @@ If you need external access to your development environment from devices on your
 
    ```bash
    # Replace with your IP address using dashes instead of dots
-   VITE_NHOST_SUBDOMAIN = 192-168-1-103-proj-a
+   VITE_NHOST_SUBDOMAIN = 172-17-0-3-proj-a
    VITE_NHOST_REGION = local
    ```
 
@@ -90,7 +96,11 @@ If you need external access to your development environment from devices on your
 
    ```bash
    nhost down
-   nhost up --local-subdomain 192-168-1-103-proj-a
+   nhost --local-subdomain 172-17-0-3-proj-a up
+   ```
+
+   ```
+
    ```
 
 4. **Restart Your React App**:
@@ -109,12 +119,6 @@ pnpm codegen
 ```
 
 ## Troubleshooting
-
-### Check Container Health
-
-```bash
-pnpm health
-```
 
 ### View Nhost Logs
 

@@ -8,12 +8,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview --host localhost --port 3000",
-    "nhost:up": "nhost up",
-    "nhost:up:external": "nhost --local-subdomain ${npm_config_subdomain:-172-17-0-3-proj-a} up",
-    "nhost:down": "nhost down",
-    "nhost:logs": "nhost logs",
-    "setup": "cp .env.example .env && pnpm install",
-    "health": "bash .devcontainer/health-check.sh"
+    "setup": "cp .env.example .env && pnpm install"
   },
   "eslintConfig": {
     "extends": [
