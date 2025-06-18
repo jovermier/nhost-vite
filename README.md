@@ -42,7 +42,7 @@ The easiest way to get started is using a dev container that automatically sets 
 3. **Start Nhost Services**:
 
    ```sh
-   nhost up
+   nhost up --http-port 443
    ```
 
 4. **Start the React Application**:
@@ -76,7 +76,7 @@ The dev container is configured to work with Nhost's subdomain feature for exter
 
 If you need external access to your development environment from devices on your network:
 
-1. **Find Your IP Address**:
+1. **Find Your Host Computer IP Address**:
 
    ```bash
    hostname -I | awk '{print $1}'
@@ -87,7 +87,7 @@ If you need external access to your development environment from devices on your
 
    ```bash
    # Replace with your IP address using dashes instead of dots
-   VITE_NHOST_SUBDOMAIN = 172-17-0-3-proj-a
+   VITE_NHOST_SUBDOMAIN = 192-168-1-103-proj-a
    VITE_NHOST_REGION = local
    ```
 
@@ -95,7 +95,7 @@ If you need external access to your development environment from devices on your
 
    ```bash
    # Replace with your IP address using dashes instead of dots
-   nhost --local-subdomain 172-17-0-3-proj-a up
+   nhost --local-subdomain 192-168-1-103-proj-a up --http-port 443
    ```
 
 4. **Start Your React App**:

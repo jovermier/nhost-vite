@@ -5,7 +5,9 @@
     "ghcr.io/devcontainers/features/git:1": {},
     "ghcr.io/devcontainers/features/github-cli:1": {},
     "ghcr.io/devcontainers-extra/features/pnpm:2": {},
-    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "privileged": true
+    }
   },
   "customizations": {
     "vscode": {
@@ -24,55 +26,13 @@
       }
     }
   },
-  "forwardPorts": [
-    3000, 1337, 8080, 5432, 1025, 8025, 3001, 4000, 9090, 9093, 9000
+  "runArgs": [
+    "--publish=443:443", // HTTPS for Traefik
+    "--publish=80:80", // HTTP  for Traefik (redirects to 443)
+    "--publish=5432:5432" // optional: Postgres for psql/DataGrip
   ],
-  "portsAttributes": {
-    "3000": {
-      "label": "React App",
-      "onAutoForward": "notify"
-    },
-    "1337": {
-      "label": "Nhost Backend",
-      "onAutoForward": "silent"
-    },
-    "8080": {
-      "label": "Hasura Console",
-      "onAutoForward": "silent"
-    },
-    "5432": {
-      "label": "PostgreSQL",
-      "onAutoForward": "silent"
-    },
-    "1025": {
-      "label": "Mailhog SMTP",
-      "onAutoForward": "silent"
-    },
-    "8025": {
-      "label": "Mailhog UI",
-      "onAutoForward": "silent"
-    },
-    "3001": {
-      "label": "Nhost Dashboard",
-      "onAutoForward": "silent"
-    },
-    "4000": {
-      "label": "Nhost Auth",
-      "onAutoForward": "silent"
-    },
-    "9090": {
-      "label": "Prometheus",
-      "onAutoForward": "silent"
-    },
-    "9093": {
-      "label": "Alertmanager",
-      "onAutoForward": "silent"
-    },
-    "9000": {
-      "label": "Grafana",
-      "onAutoForward": "silent"
-    }
-  },
+  "forwardPorts": [443, 80, 5432],
+
   "postCreateCommand": "bash .devcontainer/post-create.sh",
   "initializeCommand": "echo 'Initializing devcontainer...'",
   "remoteUser": "node"
