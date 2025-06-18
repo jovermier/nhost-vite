@@ -98,10 +98,6 @@ If you need external access to your development environment from devices on your
    nhost --local-subdomain 172-17-0-3-proj-a up
    ```
 
-   ```
-
-   ```
-
 4. **Start Your React App**:
    ```bash
    pnpm dev
