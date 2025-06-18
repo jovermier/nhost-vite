@@ -4,7 +4,7 @@
 
 This project is ready to use with GitHub Codespaces!
 
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new/?skip_quickstart=true&machine=basicLinux32gb&repo=1003724095&ref=main&devcontainer_path=.devcontainer%2Fdevcontainer.json&geo=UsEast)
 
 In addition to Codespaces, you can also run this project locally or in any compatible development environment using Dev Containers.
 
