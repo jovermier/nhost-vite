@@ -33,6 +33,17 @@ if ! command -v pnpm &> /dev/null; then
     npm install -g pnpm
 fi
 
+# Install Nhost CLI globally
+echo "🔧 Installing Nhost CLI..."
+sudo curl -L https://raw.githubusercontent.com/nhost/cli/main/get.sh | bash
+
+# Verify Nhost CLI installation
+if command -v nhost &> /dev/null; then
+    echo "✅ Nhost CLI installed successfully! Version: $(nhost --version)"
+else
+    echo "❌ Failed to install Nhost CLI"
+fi
+
 # Install dependencies
 echo "📦 Installing dependencies with pnpm..."
 pnpm install

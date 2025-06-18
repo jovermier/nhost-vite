@@ -14,29 +14,34 @@ This repo is a reference repo for the blog post: [How to use GraphQL Code Genera
 
 ### Option 1: Dev Container (Recommended)
 
-The easiest way to get started is using VS Code Dev Containers:
+The easiest way to get started is using a dev container:
 
 1. **Prerequisites**:
 
-   - [VS Code](https://code.visualstudio.com/)
-   - [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
-   - [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+   - **Docker**: [Docker Desktop](https://www.docker.com/products/docker-desktop/) (recommended) or Docker Engine on Linux
+     - **Linux users**: Docker Engine is sufficient - Docker Desktop is not required
+     - **macOS/Windows**: Docker Desktop provides the easiest setup, but alternatives like [Colima](https://github.com/abiosoft/colima) (macOS) or [Podman](https://podman.io/) can also work
+   - **IDE with Dev Container support**:
+     - [VS Code](https://code.visualstudio.com/) with [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
+     - [Cursor](https://cursor.sh/) (supports dev containers natively)
+     - [JetBrains IDEs](https://www.jetbrains.com/help/idea/connect-to-devcontainer.html) (IntelliJ IDEA, WebStorm, etc.)
+     - Or any IDE that supports the [Dev Container specification](https://containers.dev/)
 
 2. **Open in Dev Container**:
 
-   - Open this folder in VS Code
-   - Click "Reopen in Container" when prompted (or use Command Palette: "Dev Containers: Reopen in Container")
+   - **VS Code/Cursor**: Open this folder and click "Reopen in Container" when prompted (or use Command Palette: "Dev Containers: Reopen in Container")
+   - **JetBrains IDEs**: Use "Remote Development" → "Dev Containers"
+   - **Command Line**: You can also run the dev container directly with Docker:
+     ```bash
+     docker build -t nhost-react-apollo .devcontainer
+     docker run -it -p 3000:3000 -p 1337:1337 -p 8080:8080 -v $(pwd):/workspace nhost-react-apollo
+     ```
    - Wait for the container to build and services to start automatically
 
 3. **Start Development**:
 
    ```sh
    pnpm dev
-   ```
-
-4. **Health Check** (optional):
-   ```sh
-   pnpm health
    ```
 
 ### Option 2: Manual Setup
@@ -76,7 +81,7 @@ nhost up
 6. Terminal 2: Start the React application
 
 ```sh
-pnpm run dev
+pnpm dev
 ```
 
 ## Services
@@ -89,12 +94,84 @@ When running (either in dev container or manually), the following services will 
 - **Mailhog (Email Testing)**: http://localhost:8025
 - **Grafana (Monitoring)**: http://localhost:9000
 
-## GraphQL Code Generators
+## External Access (Mobile Testing)
 
-To re-run the GraphQL Code Generators, run the following:
+To access your Nhost development environment from external devices (like phones on the same network), you can manually configure the `--local-subdomain` feature:
 
+### Manual Setup
+
+#### Step 1: Find Your IP Address
+
+```bash
+# On Linux/macOS
+hostname -I | awk '{print $1}'
+# or
+ip route get 1.2.3.4 | awk '{print $7}'
+
+# On Windows
+ipconfig | findstr IPv4
 ```
-pnpm codegen -w
+
+#### Step 2: Start Nhost with Local Subdomain
+
+Replace `192.168.1.103` with your actual IP address, using dashes instead of dots:
+
+```bash
+nhost up --local-subdomain 192-168-1-103-proj-a
 ```
 
-> `-w` runs [codegen in watch mode](https://www.the-guild.dev/graphql/codegen/docs/getting-started/development-workflow#watch-mode).
+#### Step 3: Update Environment Variables
+
+Update your `.env` file to use the external subdomain:
+
+```bash
+# Comment out local configuration
+# VITE_NHOST_SUBDOMAIN = local
+# VITE_NHOST_REGION = local
+
+# Use external configuration
+VITE_NHOST_SUBDOMAIN = 192-168-1-103-proj-a
+VITE_NHOST_REGION = local
+```
+
+#### Step 4: Restart Your App
+
+```bash
+pnpm dev
+```
+
+#### Step 5: Access from External Devices
+
+Your services will now be accessible from any device on the network using these URLs:
+
+- **React App**: http://192.168.1.103:3000 (replace with your IP)
+- **Hasura Console**: https://192-168-1-103-proj-a.hasura.local.nhost.run
+- **GraphQL Endpoint**: https://192-168-1-103-proj-a.graphql.local.nhost.run
+- **Auth Service**: https://192-168-1-103-proj-a.auth.local.nhost.run
+- **Storage Service**: https://192-168-1-103-proj-a.storage.local.nhost.run
+- **Mailhog**: https://192-168-1-103-proj-a.mailhog.local.nhost.run
+- **Dashboard**: https://192-168-1-103-proj-a.dashboard.local.nhost.run
+
+### Switching Back to Local Development
+
+To revert to local-only development, manually update `.env`:
+
+```bash
+VITE_NHOST_SUBDOMAIN = local
+VITE_NHOST_REGION = local
+```
+
+Then restart Nhost:
+
+```bash
+nhost down
+nhost up
+```
+
+## GraphQL Code Generator
+
+To re-run the GraphQL Code Generator, run the following:
+
+```bash
+pnpm codegen
+```

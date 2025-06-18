@@ -10,6 +10,9 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     command: sleep infinity
     network_mode: host
+    user: "1000:1000"
+    group_add:
+      - "994" # docker group GID
     environment:
       - NODE_ENV=development
     working_dir: /workspace

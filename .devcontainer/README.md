@@ -69,6 +69,19 @@ The dev container automatically forwards the following ports:
 2. **Port conflicts**: Ensure no other services are running on the forwarded ports
 3. **Permission issues**: The container runs as the `node` user with proper permissions
 
+## Docker Socket Permissions
+
+If you encounter Docker permission errors when running `nhost up`, the dev container includes automated fixes:
+
+1. **Automatic Fix**: The `post-start.sh` script automatically fixes Docker socket permissions when the container starts
+2. **Manual Fix**: If needed, you can run the manual fix script:
+   ```bash
+   bash .devcontainer/fix-docker-permissions.sh
+   ```
+3. **Common Error**: If you see "permission denied while trying to connect to the Docker daemon socket", this indicates the Docker socket needs permission fixes
+
+The fix ensures the Docker socket (`/var/run/docker.sock`) is accessible to the `docker` group and the `node` user.
+
 ## Environment Variables
 
 The following environment variables are configured in `.env`:
