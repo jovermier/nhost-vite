@@ -1,4 +1,4 @@
-# GraphQL Code Generator Example with React and Apollo Client
+# Nhost Dev Container Example with React
 
 Todo app to show how to use:
 
@@ -37,7 +37,6 @@ The easiest way to get started is using a dev container that automatically sets 
 
    - Installs all dependencies (pnpm, Node.js, Nhost CLI)
    - Copies environment variables from `.env.example` to `.env`
-   - Starts Nhost services in the background
    - Configures port forwarding for all services
 
 3. **Start Nhost Services**:
@@ -92,10 +91,10 @@ If you need external access to your development environment from devices on your
    VITE_NHOST_REGION = local
    ```
 
-3. **Restart Nhost with Subdomain**:
+3. **Start Nhost with Subdomain**:
 
    ```bash
-   nhost down
+   # Replace with your IP address using dashes instead of dots
    nhost --local-subdomain 172-17-0-3-proj-a up
    ```
 
@@ -103,32 +102,9 @@ If you need external access to your development environment from devices on your
 
    ```
 
-4. **Restart Your React App**:
+4. **Start Your React App**:
    ```bash
    pnpm dev
    ```
 
 Your Nhost services will then be accessible from external devices using the subdomain URLs, while the React app remains accessible at your host machine's IP address on port 3000.
-
-## GraphQL Code Generator
-
-To re-run the GraphQL Code Generator:
-
-```bash
-pnpm codegen
-```
-
-## Troubleshooting
-
-### View Nhost Logs
-
-```bash
-nhost logs
-```
-
-### Restart Services
-
-```bash
-nhost down
-nhost up
-```
