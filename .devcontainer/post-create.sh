@@ -48,7 +48,4 @@ fi
 echo "📦 Installing dependencies with pnpm..."
 pnpm install
 
-# Make scripts executable
-chmod +x .devcontainer/post-start.sh
-
 echo "✅ Post-create script completed!"

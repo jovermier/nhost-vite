@@ -14,11 +14,13 @@
       "extensions": [
         "ms-vscode.vscode-typescript-next",
         "bradlc.vscode-tailwindcss",
+        "ms-vscode.vscode-eslint",
         "esbenp.prettier-vscode",
         "ms-vscode.vscode-json",
+        "GitHub.copilot",
+        "GitHub.copilot-chat",
         "GraphQL.vscode-graphql",
-        "GraphQL.vscode-graphql-syntax",
-        "ms-vscode.vscode-eslint"
+        "GraphQL.vscode-graphql-syntax"
       ],
       "settings": {
         "terminal.integrated.defaultProfile.linux": "bash",
@@ -32,7 +34,21 @@
     "--publish=5432:5432" // optional: Postgres for psql/DataGrip
   ],
   "forwardPorts": [443, 80, 5432],
-
+  "appPort": [443, 80, 5432],
+  "portsAttributes": {
+    "443": {
+      "label": "Traefik",
+      "onAutoForward": "silent"
+    },
+    "80": {
+      "label": "Traefik",
+      "onAutoForward": "silent"
+    },
+    "5432": {
+      "label": "Postgres",
+      "onAutoForward": "silent"
+    }
+  },
   "postCreateCommand": "bash .devcontainer/post-create.sh",
   "initializeCommand": "echo 'Initializing devcontainer...'",
   "remoteUser": "node"
