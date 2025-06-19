@@ -5,6 +5,8 @@
   "scripts": {
     "codegen": "env-cmd -f .env --silent graphql-codegen",
     "dev": "vite",
+    "proxy": "node proxy.js",
+    "nhostup": "./nhostup.sh",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview --host localhost --port 3000",
@@ -22,6 +24,8 @@
     "@nhost/react-apollo": "18.0.0",
     "@tailwindcss/vite": "4.1.10",
     "clsx": "2.1.1",
+    "express": "^5.1.0",
+    "http-proxy-middleware": "^3.0.5",
     "react": "19.1.0",
     "react-dom": "19.1.0"
   },

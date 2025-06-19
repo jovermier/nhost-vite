@@ -31,10 +31,16 @@
   "runArgs": [
     "--publish=443:443", // HTTPS for Traefik
     "--publish=80:80", // HTTP  for Traefik (redirects to 443)
-    "--publish=5432:5432" // optional: Postgres for psql/DataGrip
+    "--publish=5432:5432", // optional: Postgres for psql/DataGrip
+    "--publish=8081:8081", // Hasura Proxy
+    "--publish=8082:8082", // Auth Proxy
+    "--publish=8083:8083", // Storage Proxy
+    "--publish=8084:8084", // Dashboard Proxy
+    "--publish=8085:8085", // Functions Proxy
+    "--publish=8086:8086"  // Mailhog Proxy
   ],
-  "forwardPorts": [443, 80, 5432],
-  "appPort": [443, 80, 5432],
+  "forwardPorts": [443, 80, 5432, 8081, 8082, 8083, 8084, 8085, 8086],
+  "appPort": [443, 80, 5432, 8081, 8082, 8083, 8084, 8085, 8086],
   "portsAttributes": {
     "443": {
       "label": "Traefik",
@@ -46,6 +52,30 @@
     },
     "5432": {
       "label": "Postgres",
+      "onAutoForward": "silent"
+    },
+    "8081": {
+      "label": "Hasura Proxy",
+      "onAutoForward": "silent"
+    },
+    "8082": {
+      "label": "Auth Proxy",
+      "onAutoForward": "silent"
+    },
+    "8083": {
+      "label": "Storage Proxy",
+      "onAutoForward": "silent"
+    },
+    "8084": {
+      "label": "Dashboard Proxy",
+      "onAutoForward": "silent"
+    },
+    "8085": {
+      "label": "Functions Proxy",
+      "onAutoForward": "silent"
+    },
+    "8086": {
+      "label": "Mailhog Proxy",
       "onAutoForward": "silent"
     }
   },
