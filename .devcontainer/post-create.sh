@@ -48,4 +48,20 @@ fi
 echo "📦 Installing dependencies with pnpm..."
 pnpm install
 
+# Set Codespace ports 3210 and 5173 to public
+if [ -n "$CODESPACE_NAME" ]; then
+    gh codespace ports visibility 8081:public --codespace "$CODESPACE_NAME"
+    echo "Set Codespace port 8081 to public."
+    gh codespace ports visibility 8082:public --codespace "$CODESPACE_NAME"
+    echo "Set Codespace port 8082 to public."
+    gh codespace ports visibility 8083:public --codespace "$CODESPACE_NAME"
+    echo "Set Codespace port 8083 to public."
+    gh codespace ports visibility 8084:public --codespace "$CODESPACE_NAME"
+    echo "Set Codespace port 8084 to public."
+    gh codespace ports visibility 8085:public --codespace "$CODESPACE_NAME"
+    echo "Set Codespace port 8085 to public."
+    gh codespace ports visibility 8086:public --codespace "$CODESPACE_NAME"
+    echo "Set Codespace port 8086 to public."
+fi
+
 echo "✅ Post-create script completed!"

@@ -39,8 +39,8 @@
     "--publish=8085:8085", // Functions Proxy
     "--publish=8086:8086"  // Mailhog Proxy
   ],
-  "forwardPorts": [443, 80, 5432, 8081, 8082, 8083, 8084, 8085, 8086],
-  "appPort": [443, 80, 5432, 8081, 8082, 8083, 8084, 8085, 8086],
+  "forwardPorts": [443, 80, 3000, 5432, 8081, 8082, 8083, 8084, 8085, 8086],
+  "appPort": [443, 80, 3000, 5432, 8081, 8082, 8083, 8084, 8085, 8086],
   "portsAttributes": {
     "443": {
       "label": "Traefik",
@@ -53,6 +53,10 @@
     "5432": {
       "label": "Postgres",
       "onAutoForward": "silent"
+    },
+    "3000": {
+      "label": "Vite Dev Server",
+      "onAutoForward": "openBrowser"
     },
     "8081": {
       "label": "Hasura Proxy",
